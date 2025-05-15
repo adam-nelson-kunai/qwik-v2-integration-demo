@@ -1,0 +1,7 @@
+[submodule "qwik-optimizer"]
+	path = qwik-optimizer
+	url = https://github.com/kunai-consulting/qwik-optimizer
+[submodule "qwik"]
+	path = qwik
+	url = https://github.com/QwikDev/qwik.git
+	branch = build/v2
