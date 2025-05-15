@@ -1,11 +1,26 @@
 version: 3
 
 tasks:
+  build-qwik:
+    dir: ./qwik
+    cmds:
+      - pnpm install
+      - pnpm build.local
+  install-v1:
+    dir: ./project-v1
+    cmds:
+      - npm i
+  install-v2:
+    dir: ./project-v2
+    cmds:
+      - npm i
   build-v1:
+    deps: [install-v1]
     dir: ./project-v1
     cmds:
       - npm run build
   build-v2:
+    deps: [install-v2]
     dir: ./project-v2
     cmds:
       - npm run build
@@ -13,3 +28,6 @@ tasks:
     deps: [build-v1, build-v2]
     cmds:
       - diff -bur ./project-v1/dist ./project-v2/dist
+  clean:
+    cmds:
+      - rm -rf ./project-v1/dist ./project-v2/dist
