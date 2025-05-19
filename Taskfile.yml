@@ -1,33 +1,71 @@
 version: 3
 
 tasks:
-  build-qwik:
+  setup-qwik:
+    run: once
     dir: ./qwik
     cmds:
       - pnpm install
-      - pnpm build.local
-  install-v1:
-    dir: ./project-v1
+    sources:
+      - package.json
+    generates:
+      - node_modules
+  build-qwik:
+    run: once
+    deps: [setup-qwik]
+    dir: ./qwik
     cmds:
-      - npm i
-  install-v2:
-    dir: ./project-v2
+      - pnpm build.core
+    sources:
+      - packages/qwik/src/**
+      - packages/qwik-router/src/**
+    generates:
+      - packages/qwik/dist
+      - packages/qwik-router/dist
+  install-original:
+    deps: [build-qwik]
+    dir: ./project-original
     cmds:
-      - npm i
-  build-v1:
-    deps: [install-v1]
-    dir: ./project-v1
+      - pnpm i
+    sources:
+      - package.json
+    generates:
+      - node_modules
+  install-new:
+    deps: [build-qwik]
+    dir: ./project-new
     cmds:
-      - npm run build
-  build-v2:
-    deps: [install-v2]
-    dir: ./project-v2
+      - pnpm i
+    sources:
+      - package.json
+    generates:
+      - node_modules
+  build-original:
+    deps: [install-original]
+    dir: ./project-original
     cmds:
-      - npm run build
+      - pnpm run build
+    sources:
+      - ./**/*.ts
+      - ./**/*.tsx
+      - ./**/*.css
+    generates:
+      - dist
+  build-new:
+    deps: [install-new]
+    dir: ./project-new
+    cmds:
+      - pnpm run build
+    sources:
+      - ./**/*.ts
+      - ./**/*.tsx
+      - ./**/*.css
+    generates:
+      - dist
   diff-builds:
-    deps: [build-v1, build-v2]
+    deps: [build-original, build-new]
     cmds:
-      - diff -bur ./project-v1/dist ./project-v2/dist
+      - diff -bur ./project-original/dist ./project-new/dist
   clean:
     cmds:
-      - rm -rf ./project-v1/dist ./project-v2/dist
+      - rm -rf ./project-original/dist ./project-new/dist

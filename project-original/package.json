@@ -1,0 +1,35 @@
+{
+  "name": "project-v2",
+  "scripts": {
+    "build": "qwik build",
+    "build.client": "vite build",
+    "build.preview": "vite build --ssr src/entry.preview.tsx",
+    "build.types": "tsc --incremental --noEmit",
+    "dev": "vite --mode ssr",
+    "dev.debug": "node --inspect-brk ./node_modules/vite/bin/vite.js --mode ssr --force",
+    "fmt": "prettier --write .",
+    "fmt.check": "prettier --check .",
+    "preview": "qwik build preview && vite preview --open",
+    "start": "vite --open --mode ssr",
+    "deploy": "echo 'Run \"npm run qwik add\" to install a server adapter'",
+    "qwik": "qwik"
+  },
+  "devDependencies": {
+    "@qwik.dev/core": "../qwik/packages/qwik/",
+    "@qwik.dev/router": "../qwik/packages/qwik-router/",
+    "@types/node": "latest",
+    "prettier": "latest",
+    "typescript": "latest",
+    "vite": "^4.5.2",
+    "vite-tsconfig-paths": "^4.2.1"
+  },
+  "engines": {
+    "node": "^18.17.0 || ^20.3.0 || >=21.0.0",
+    "npm": ">=10.0.0",
+    "pnpm": ">=8.0.0",
+    "yarn": ">=3.0.0"
+  },
+  "engines-annotation": "Mostly required by sharp which needs a Node-API v9 compatible runtime",
+  "private": true,
+  "type": "module"
+}
