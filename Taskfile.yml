@@ -22,6 +22,33 @@ tasks:
     generates:
       - packages/qwik/dist
       - packages/qwik-router/dist
+  setup-qwik2:
+    run: once
+    dir: ./qwik2
+    cmds:
+      - cp ../Cargo.toml.patched ./Cargo.toml
+      - cp ../binding-platform.ts.patched ./scripts/binding-platform.ts
+      - ln -sf ../qwik-optimizer .
+      - pnpm install
+    sources:
+      - package.json
+    generates:
+      - node_modules
+      - qwik-optimizer
+  build-qwik2:
+    run: once
+    deps: [setup-qwik2]
+    dir: ./qwik2
+    cmds:
+      - pnpm build.core
+    sources:
+      - packages/qwik/src/**
+      - packages/qwik-router/src/**
+      - qwik-optimizer/napi/src/**
+      - qwik-optimizer/optimizer/src/**
+    generates:
+      - packages/qwik/dist
+      - packages/qwik-router/dist
   install-original:
     deps: [build-qwik]
     dir: ./project-original
@@ -32,7 +59,7 @@ tasks:
     generates:
       - node_modules
   install-new:
-    deps: [build-qwik]
+    deps: [build-qwik2]
     dir: ./project-new
     cmds:
       - pnpm i

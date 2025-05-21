@@ -15,8 +15,8 @@
     "qwik": "qwik"
   },
   "devDependencies": {
-    "@qwik.dev/core": "../qwik/packages/qwik/",
-    "@qwik.dev/router": "../qwik/packages/qwik-router/",
+    "@qwik.dev/core": "../qwik2/packages/qwik/",
+    "@qwik.dev/router": "../qwik2/packages/qwik-router/",
     "@types/node": "latest",
     "prettier": "latest",
     "typescript": "latest",

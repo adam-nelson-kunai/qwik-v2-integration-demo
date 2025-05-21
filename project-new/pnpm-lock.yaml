@@ -9,11 +9,11 @@ importers:
   .:
     devDependencies:
       '@qwik.dev/core':
-        specifier: ../qwik/packages/qwik/
-        version: link:../qwik/packages/qwik
+        specifier: ../qwik2/packages/qwik/
+        version: link:../qwik2/packages/qwik
       '@qwik.dev/router':
-        specifier: ../qwik/packages/qwik-router/
-        version: link:../qwik/packages/qwik-router
+        specifier: ../qwik2/packages/qwik-router/
+        version: link:../qwik2/packages/qwik-router
       '@types/node':
         specifier: latest
         version: 22.15.19

@@ -1,0 +1,12 @@
+[workspace]
+
+members = [
+    "qwik-optimizer/napi",
+    "qwik-optimizer/optimizer",
+]
+exclude = ["packages/qwik/src/wasm"]
+resolver = "2"
+
+[profile.release]
+debug = 0
+
