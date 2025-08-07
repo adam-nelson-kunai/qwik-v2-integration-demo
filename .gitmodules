@@ -10,3 +10,6 @@
 	path = qwik2
 	url = https://github.com/QwikDev/qwik.git
 	branch = build/v2
+[submodule "v2-no-router"]
+	path = v2-no-router
+	url = git@github.com:thejackshelton/v2-no-router.git

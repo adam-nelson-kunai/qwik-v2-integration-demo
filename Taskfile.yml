@@ -28,6 +28,7 @@ tasks:
     cmds:
       - cp ../Cargo.toml.patched ./Cargo.toml
       - cp ../binding-platform.ts.patched ./scripts/binding-platform.ts
+      - cp ../rust-toolchain.patched ./rust-toolchain
       - ln -sf ../qwik-optimizer .
       - pnpm install
     sources:
